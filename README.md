@@ -1,1 +1,1 @@
-# lightning-talk
+# Javascript for Geospatial Applications Using Leaflet
