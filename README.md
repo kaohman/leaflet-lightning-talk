@@ -11,10 +11,10 @@ Start a local host in your terminal and visit the local host in your browser
 This site was created for a lightning talk on Javascript for Geospatial Applications. The site displays a map of the United States with point data for each National Park. The points have pop-ups when they are clicked that display the park name, a photo from the park, and a link to the National Park Service website for that park.
 
 ## Primary Technologies Used:
-HTML
-CSS
-Javascript
-Leaflet
+- HTML
+- CSS
+- Javascript
+- Leaflet
 
 ## Enhancements:
 - Include a larger side-screen pop-up with more details about the park.
