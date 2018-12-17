@@ -1,6 +1,6 @@
 # Javascript for Geospatial Applications Using Leaflet
 
-A simple application of the Leaflet JS library to display National Parks data. [See it Live!]()
+A simple application of the Leaflet JS library to display National Parks data. [See it Live!](https://kaohman.github.io/leaflet-lightning-talk/)
 
 ## Set-Up Front-End:
 Clone this repo
