@@ -32,8 +32,9 @@ function showSources(jsonObj) {
     let lon = (park.longitude.includes('E')) ? park.longitude.replace(/.E$/, '') : park.longitude.replace(/.W$/, '').replace(/^/, '-');
     // add each marker to our map here
     L.marker([lat, lon], {icon: greenIcon}).addTo(myMap).bindPopup(`
-      <p class="name-text">${park.parkName}</p>
+      <h2 class="name-text">${park.parkName}</h2>
       <img class="icon-images" src="${park.image}"/>
+      <a href=${park.websiteUrl}>Link to Park Webpage</p>
       `);
   });
 }

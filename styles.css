@@ -3,7 +3,7 @@
   border: 2px solid black;
   margin: 30px auto;
   height: 600px; 
-  width: 800px;
+  width: 1000px;
 }
 
 .name-text {
@@ -12,8 +12,9 @@
 }
 
 .icon-images {
+  margin: 10px auto;
   display: block;
-  width: 150px;
+  width: 200px;
 }
 
 /*_________________________________*/
