@@ -17,36 +17,28 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     accessToken: 'pk.eyJ1Ijoia2FvaG1hIiwiYSI6ImNqcHE2ZzZ6bTA0ZGo0OG1oNDBob21sbG0ifQ.yLVgGtTBOaYeLihbrrrFPA'
 }).addTo(myMap);
 
-loadJSON(function(response) {
-  const jsonObj = JSON.parse(response);
-  showSources(jsonObj);
-});
+var nationalParks;
+getData();
 
-function showSources(jsonObj) {
-  const sourceNames = jsonObj.map(obj => {
-    return obj.source;
-  });
+function getData() {
+  fetch('https://whateverly-datasets.herokuapp.com/api/v1/nationalParks1810')
+  .then(data => data.json())
+  .then(data => nationalParks = data.nationalParks1810)
+  .then(data => {
+    displayParks();
+  })
+  .catch(error => console.log(error))
+}
 
-  jsonObj.forEach(park => {
+function displayParks() {
+  nationalParks.forEach(park => {
     let lat = (park.latitude.includes('N')) ? park.latitude.replace(/.N$/, '') : park.latitude.replace(/.S$/, '').replace(/^/, '-');
     let lon = (park.longitude.includes('E')) ? park.longitude.replace(/.E$/, '') : park.longitude.replace(/.W$/, '').replace(/^/, '-');
     // add each marker to our map here
-    L.marker([lat, lon], {icon: greenIcon}).addTo(myMap).bindPopup(`
-      <h2 class="name-text">${park.parkName}</h2>
-      <img class="icon-images" src="${park.image}"/>
-      <a href=${park.websiteUrl}>Link to Park Webpage</p>
+    L.marker([lat, lon], { icon: greenIcon }).addTo(myMap).bindPopup(`
+        <h2 class="name-text">${park.parkName}</h2>
+        <img class="icon-images" src="${park.image}"/>
+        <a href=${park.websiteUrl}>Link to Park Webpage</p>
       `);
   });
-}
-
-function loadJSON(callback) {
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType('application/json');
-  xobj.open('GET', 'national-parks.json', true);
-  xobj.onreadystatechange = function() {
-    if (xobj.readyState == 4 && xobj.status == '200') {
-      callback(xobj.responseText);
-    }
-  };
-  xobj.send(null);
 }
